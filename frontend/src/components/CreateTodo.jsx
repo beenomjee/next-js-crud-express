@@ -1,4 +1,5 @@
 'use client'
+import { BACKEND_URL } from '@/constants';
 import { Loader2 } from '@/layout';
 import axios from 'axios';
 import React, { useState } from 'react'
@@ -11,8 +12,8 @@ const CreateTodo = ({ inputRef, setEditCompleted, setEditId, editId, editComplet
         if (isLoading) return;
         setIsLoading(true);
         try {
-            const { data } = editId ? await axios.put('/api/v1/todo', { _id: editId, description, isCompleted: editCompleted }) :
-                await axios.post('/api/v1/todo', { description });
+            const { data } = editId ? await axios.put(`${BACKEND_URL}/api/v1/todo`, { _id: editId, description, isCompleted: editCompleted }) :
+                await axios.post(`${BACKEND_URL}/api/v1/todo`, { description });
             toast.success(data.message);
             setDescription('');
             setEditId('');
