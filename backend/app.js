@@ -1,17 +1,13 @@
 import express from "express";
-import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import { authRouter, todoRouter } from "./routes/index.js";
 import dotenv from "dotenv";
 import cors from "cors";
+import helmet from "helmet";
 
 dotenv.config({});
 
 const app = express();
-app.use((req, res, next) => {
-  console.log("biba");
-  next();
-});
 app.use(helmet());
 app.use(
   cors({
