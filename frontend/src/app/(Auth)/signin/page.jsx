@@ -1,5 +1,4 @@
 'use client'
-import { BACKEND_URL } from '@/constants';
 import { Input, Loader } from '@/layout'
 import axios from 'axios';
 import Link from 'next/link'
@@ -28,7 +27,7 @@ export default function Signup() {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const { data: { message } } = await axios.post(`${BACKEND_URL}/api/v1/auth/signin`, data);
+            const { data: { message } } = await axios.post(`/api/v1/auth/signin`, data);
             toast.success(message);
             router.replace('/')
         } catch (error) {

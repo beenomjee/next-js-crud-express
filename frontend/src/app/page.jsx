@@ -7,11 +7,10 @@ import { Loader, Loader2 } from "@/layout";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { BACKEND_URL } from "@/constants";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 export default function Home() {
-  const { data, isLoading, mutate } = useSWR(`${BACKEND_URL}/api/v1/todo`, fetcher)
+  const { data, isLoading, mutate } = useSWR(`/api/v1/todo`, fetcher)
   const [description, setDescription] = useState('');
   const [editId, setEditId] = useState('');
   const [editCompleted, setEditCompleted] = useState(null);
@@ -23,7 +22,7 @@ export default function Home() {
     if (isLoading2 || isLoading) return;
     setIsLoading2(true);
     try {
-      const { data } = await axios.get(`${BACKEND_URL}/api/v1/auth/logout`);
+      const { data } = await axios.get(`/api/v1/auth/logout`);
       toast.success(data.message);
       router.replace('/signin');
     } catch (error) {

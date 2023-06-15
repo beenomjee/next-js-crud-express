@@ -1,4 +1,3 @@
-import { BACKEND_URL } from '@/constants';
 import { Loader2 } from '@/layout';
 import axios from 'axios';
 import React, { useState } from 'react'
@@ -12,7 +11,7 @@ const TodoItem = ({ inputRef, setDescription, setEditCompleted, setEditId, mutat
         if (isLoading) return;
         setIsLoading(true);
         try {
-            const { data } = await axios.put(`${BACKEND_URL}/api/v1/todo`, { _id, description, isCompleted: !isCompleted });
+            const { data } = await axios.put(`/api/v1/todo`, { _id, description, isCompleted: !isCompleted });
             toast.success(data.message);
             mutate()
         } catch (error) {
@@ -28,7 +27,7 @@ const TodoItem = ({ inputRef, setDescription, setEditCompleted, setEditId, mutat
         if (isLoading) return;
         setIsLoading(true);
         try {
-            const { data } = await axios.delete(`${BACKEND_URL}/api/v1/todo/${_id}`);
+            const { data } = await axios.delete(`/api/v1/todo/${_id}`);
             toast.success(data.message);
             mutate()
         } catch (error) {
