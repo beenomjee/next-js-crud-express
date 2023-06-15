@@ -27,7 +27,7 @@ export default function Signup() {
         e.preventDefault();
         setIsLoading(true);
         try {
-            const { data: { message } } = await axios.post(`/api/v1/auth/signin`, data, { withCredentials: true });
+            const { data: { message } } = await axios.post(`/api/v1/auth/signin`, data);
             toast.success(message);
             router.replace('/')
         } catch (error) {
